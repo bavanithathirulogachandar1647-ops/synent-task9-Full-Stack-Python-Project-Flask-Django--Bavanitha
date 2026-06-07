@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Task Manager</h1>
+
+    <h3>Welcome {{ username }}</h3>
+
+    <form action="/add_task" method="POST">
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Enter New Task"
+            required>
+
+        <button type="submit">
+            Add Task
+        </button>
+
+    </form>
+
+    <h3>My Tasks</h3>
+
+    <ul>
+
+        {% for task in tasks %}
+
+        <li>
+
+            {{ task.title }}
+
+            <a href="/delete/{{ task.id }}" class="delete-btn">
+                Delete
+            </a>
+
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+    <a href="/logout" class="logout">
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>
